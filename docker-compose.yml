@@ -12,5 +12,35 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  mysql:
+    image: mysql:latest
+    container_name: my_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: file-upload
+      MYSQL_USER: ammous
+      MYSQL_PASSWORD: ammous
+    ports:
+      - "3305:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  db2:
+    image: ibmcom/db2:latest
+    container_name: my_db2
+    restart: always
+    privileged: true
+    environment:
+      DB2INST1_PASSWORD: ammous
+      DBNAME: fileup
+      LICENSE: accept
+    ports:
+      - "50000:50000"
+    volumes:
+      - db2_data:/database
+
 volumes:
   postgres_data:
+  mysql_data:
+  db2_data:

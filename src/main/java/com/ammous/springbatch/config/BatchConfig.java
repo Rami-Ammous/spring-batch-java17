@@ -51,7 +51,7 @@ public class BatchConfig {
     }
 
     //@Value("${inputFile}") Resource resource;    // 1 000 000
-    @Value("${inputFile2}") Resource resource;  // 50 000
+    @Value("${inputFile}") Resource resource;  // 50 000
     @Bean
     public FlatFileItemReader<Student> itemReader() {
 
@@ -100,7 +100,7 @@ public class BatchConfig {
                 .reader(itemReader())
                 .processor(processor())
                 .writer(writer)
-                //.taskExecutor(taskExecutor())
+                .taskExecutor(taskExecutor())
                 .build();
     }
 
@@ -111,10 +111,10 @@ public class BatchConfig {
                 .build();
     }
 
-    /*@Bean
+    @Bean
     public TaskExecutor taskExecutor() {
         SimpleAsyncTaskExecutor taskExecutor = new SimpleAsyncTaskExecutor();
         taskExecutor.setConcurrencyLimit(100);
         return taskExecutor;
-    }*/
+    }
 }
